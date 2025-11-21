@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+torch
+transformers
+peft
+accelerate
+bitsandbytes
+safetensors
+python-multipart

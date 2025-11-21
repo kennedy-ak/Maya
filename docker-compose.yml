@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  chatbot:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_PATH=ghana_contraception_lora
+    volumes:
+      # Optional: Mount model directory if you want to update it without rebuilding
+      - ./ghana_contraception_lora:/app/ghana_contraception_lora:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
